@@ -1,0 +1,17 @@
+version: "3.0"
+services:
+  db:
+    image: mysql:5.7.19
+    environment:
+      - MYSQL_DATABASE=loja
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /home/fdsdev/dev-projects/cursos/kubernetes/volumes/mysql:/var/lib/mysql
+
+  web:
+    image: aplicacao-loja:v1
+    ports:
+      - 8080:80
+    depends_on:
+      - db
